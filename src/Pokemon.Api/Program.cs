@@ -1,6 +1,8 @@
-using Pokemon.Api.Clients;
 using Pokemon.Api.Dtos;
+using Pokemon.Api.Services;
 using Pokemon.Api.Interfaces;
+using Pokemon.Api.Client.Clients;
+using Pokemon.Api.Client.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,7 @@ services.AddEndpointsApiExplorer();
 
 var cfg = builder.Configuration.GetSection(nameof(ClientConfig)).Get<ClientConfig>();
 
+services.AddSingleton<IInfoExtractor, InfoExtractor>();
 services.AddHttpClient<IPokeApiClient, PokeApiClient>(cl => cl.BaseAddress = new Uri(cfg.PokeApiUrl));
 
 var app = builder.Build();

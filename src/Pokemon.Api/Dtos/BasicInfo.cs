@@ -8,5 +8,5 @@ namespace Pokemon.Api.Dtos;
 
         public string? Habitat { get; init; } 
 
-        public bool IsLegendary { get; init; }
+        public bool? IsLegendary { get; init; }
     }
