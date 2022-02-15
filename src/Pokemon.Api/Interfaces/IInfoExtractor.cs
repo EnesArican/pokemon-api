@@ -4,5 +4,7 @@ using Pokemon.Api.Dtos;
 
 public interface IInfoExtractor
 {
-    Task<BasicInfo> GetBasicInfoAsync(string pokemonName, CancellationToken token);
+    Task<PokemonInfo> GetBasicInfoAsync(string pokemonName, CancellationToken token);
+
+    Task<PokemonInfo> GetTranslatedInfoAsync(string pokemonName, CancellationToken token);
 }

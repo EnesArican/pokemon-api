@@ -11,11 +11,9 @@ public class PokeApiClient : IPokeApiClient
     public PokeApiClient(HttpClient httpClient) =>
         _httpClient = httpClient;
 
-    public async Task<PokeApiGetResponse> GetPokemonInfo(string name, CancellationToken token)
+    public async Task<PokeApiGetResponse> GetPokemonInfoAsync(string name, CancellationToken token)
     {
-        return await _httpClient.GetFromJsonAsync<PokeApiGetResponse>(name, token);
-
-
-        
+        return await _httpClient.GetFromJsonAsync<PokeApiGetResponse>(name, token)
+            ?? throw new InvalidOperationException("Unable to deserialize response content.");
     }
 }

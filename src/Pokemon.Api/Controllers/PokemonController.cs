@@ -19,8 +19,14 @@ public class PokemonController : ControllerBase
     }
 
     [HttpGet("{pokemonName}")]
-    public Task<BasicInfo> Get(string pokemonName, CancellationToken token = default)
+    public Task<PokemonInfo> Get(string pokemonName, CancellationToken token = default)
     {
         return _infoExtractor.GetBasicInfoAsync(pokemonName, token);
+    }
+
+    [HttpGet("translated/{pokemonName}")]
+    public Task<PokemonInfo> GetTranslated(string pokemonName, CancellationToken token = default)
+    {
+        return _infoExtractor.GetTranslatedInfoAsync(pokemonName, token);
     }
 }

@@ -11,7 +11,7 @@ public record PokeApiGetResponse
 
 
     [Json("is_legendary")]
-    public bool? IsLegendary { get; init; }
+    public bool IsLegendary { get; init; } = false;
 }
 
 

@@ -8,8 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 
-// Add services to the container.
-
 services.AddSwaggerGen();
 services.AddControllers();
 services.AddEndpointsApiExplorer();
@@ -18,10 +16,12 @@ var cfg = builder.Configuration.GetSection(nameof(ClientConfig)).Get<ClientConfi
 
 services.AddSingleton<IInfoExtractor, InfoExtractor>();
 services.AddHttpClient<IPokeApiClient, PokeApiClient>(cl => cl.BaseAddress = new Uri(cfg.PokeApiUrl));
+services.AddHttpClient<IShakespearClient, ShakespearClient>(cl => cl.BaseAddress = new Uri(cfg.TranslatorUrl));
+services.AddHttpClient<IYodaTranslatorClient, YodaTranslatorClient>(cl => cl.BaseAddress = new Uri(cfg.TranslatorUrl));
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

@@ -6,7 +6,7 @@ namespace Pokemon.Api.Mappers
     public static class PokeApiResponseMapper
     {
         private const string languageCode = "en";
-        public static BasicInfo Map(this PokeApiGetResponse response, string name) => new()
+        public static PokemonInfo Map(this PokeApiGetResponse response, string name) => new()
         {
             Name = name,
             Habitat = response.Habitat?.Name,
