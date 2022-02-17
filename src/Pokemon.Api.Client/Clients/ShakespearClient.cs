@@ -13,7 +13,9 @@ public class ShakespearClient : IShakespearClient
 
     public async Task<TranslationResponse> GetTranslationAsync(string text, CancellationToken token)
     {
-        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(RequestUri, new TranslationRequest(text), token)!;
+        var response = await _httpClient.PostAsJsonAsync(RequestUri, new TranslationRequest(text), token);
+
+        response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadFromJsonAsync<TranslationResponse>(cancellationToken: token)
             ?? throw new InvalidOperationException("Unable to deserialize response content.");
