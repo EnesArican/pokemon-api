@@ -93,7 +93,6 @@ public abstract class InfoExtractor_Backend
        Data.Result = await Cut.GetTranslatedInfoAsync(Data.PokemonName, default);
 
 
-
     //THEN//
     public void Should_call_poke_api_client_get_pokemon_info() 
     {
