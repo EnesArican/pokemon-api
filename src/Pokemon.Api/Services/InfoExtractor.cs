@@ -8,7 +8,6 @@ using Pokemon.Api.Client.Interfaces;
 
 public class InfoExtractor : IInfoExtractor
 {
-    private const string CaveString = "cave";
     private readonly IPokeApiClient _pokeApiClient;
     private readonly ILogger<InfoExtractor> _logger;
     private readonly IYodaTranslatorClient _yodaClient;
@@ -46,8 +45,8 @@ public class InfoExtractor : IInfoExtractor
         {
             var response = pokemonInfo switch
             {
-                { Habitat: CaveString } or { IsLegendary: true } => await _yodaClient.GetTranslationAsync(pokemonInfo.Description!, token),
-                _ => await _shakespearClient.GetTranslationAsync(pokemonInfo.Description!, token)
+                { Habitat: "cave" } or { IsLegendary: true } => await _yodaClient.GetTranslationAsync(pokemonInfo.Description, token),
+                _ => await _shakespearClient.GetTranslationAsync(pokemonInfo.Description, token)
             };
 
             description = response?.Contents?.Translated;

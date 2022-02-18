@@ -9,14 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 public class PokemonController : ControllerBase
 {
     private readonly IInfoExtractor _infoExtractor;
-    private readonly ILogger<PokemonController> _logger;
 
-    public PokemonController(IInfoExtractor infoExtractor,
-                             ILogger<PokemonController> logger)
-    {
-        _logger = logger;
+    public PokemonController(IInfoExtractor infoExtractor) => 
         _infoExtractor = infoExtractor;
-    }
+   
 
     [HttpGet("{pokemonName}")]
     public Task<PokemonInfo> Get(string pokemonName, CancellationToken token = default)
