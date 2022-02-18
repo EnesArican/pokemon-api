@@ -1,9 +1,8 @@
-﻿using Pokemon.Api.Client.Dtos;
+﻿namespace Pokemon.Api.Client.Clients;
 
-namespace Pokemon.Api.Client.Clients
+using Pokemon.Api.Client.Dtos;
+
+public interface IShakespearClient
 {
-    public interface IShakespearClient
-    {
-        Task<TranslationResponse> GetTranslationAsync(string text, CancellationToken token);
-    }
+    Task<TranslationResponse> GetTranslationAsync(string? text, CancellationToken token);
 }

@@ -11,7 +11,7 @@ public class YodaTranslatorClient : IYodaTranslatorClient
     public YodaTranslatorClient(HttpClient httpClient) =>
         _httpClient = httpClient;
 
-    public async Task<TranslationResponse> GetTranslationAsync(string text, CancellationToken token)
+    public async Task<TranslationResponse> GetTranslationAsync(string? text, CancellationToken token)
     {
         var response =  await _httpClient.PostAsJsonAsync(RequestUri, new TranslationRequest(text), token);
 

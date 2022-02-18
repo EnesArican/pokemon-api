@@ -11,7 +11,7 @@ public class ShakespearClient : IShakespearClient
     public ShakespearClient(HttpClient httpClient) =>
         _httpClient = httpClient;
 
-    public async Task<TranslationResponse> GetTranslationAsync(string text, CancellationToken token)
+    public async Task<TranslationResponse> GetTranslationAsync(string? text, CancellationToken token)
     {
         var response = await _httpClient.PostAsJsonAsync(RequestUri, new TranslationRequest(text), token);
 
